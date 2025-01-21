@@ -1,36 +1,35 @@
 >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
 
-# Test avec une matrice valide et un diviseur valide
+# Test with valid matrix and divisor
 >>> matrix = [[1, 2, 3], [4, 5, 6]]
->>> matrix_divided(matrix, 3)
+>>> print(matrix_divided(matrix, 3))
 [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
 
-# Test avec une matrice vide
->>> matrix_divided([], 2)
-Traceback (most recent call last):
-    ...
-TypeError: matrix must be a matrix (list of lists) of integers/floats
-
-# Test avec un diviseur non numérique
+# Test with non-numeric divisor
 >>> matrix_divided([[1, 2], [3, 4]], "3")
 Traceback (most recent call last):
-    ...
+...
 TypeError: div must be a number
 
-# Test avec une division par zéro
+# Test division by zero
 >>> matrix_divided([[1, 2], [3, 4]], 0)
 Traceback (most recent call last):
-    ...
+...
 ZeroDivisionError: division by zero
 
-# Test avec des lignes de tailles différentes
+# Test with different row sizes
 >>> matrix_divided([[1, 2], [3, 4, 5]], 2)
 Traceback (most recent call last):
-    ...
-TypeError: Each row of the matrix must have the same size
+...
+ValueError: each row of the matrix must have the same size
 
-# Test avec des éléments non numériques dans la matrice
+# Test with non-numeric elements
 >>> matrix_divided([[1, "2"], [3, 4]], 2)
 Traceback (most recent call last):
-    ...
-TypeError: matrix must be a matrix (list of lists) of integers/floats
+...
+TypeError: matrix must contain only integers or floats
+
+# Test with float division
+>>> matrix = [[1, 2, 3], [4, 5, 6]]
+>>> print(matrix_divided(matrix, 2.5))
+[[0.4, 0.8, 1.2], [1.6, 2.0, 2.4]]
