@@ -1,5 +1,12 @@
+
+==============================
+How to use 3-say_my_name.py
+==============================
+
+1) Import file
 >>> say_my_name = __import__('3-say_my_name').say_my_name
 
+2) Typical usage
 >>> say_my_name("John", "Smith")
 My name is John Smith
 
