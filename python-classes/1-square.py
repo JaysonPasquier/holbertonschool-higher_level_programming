@@ -3,11 +3,12 @@
 
 
 class Square:
-    """Square with size"""
+    """Class that defines a square."""
+
     def __init__(self, size):
+        """Initialize the square with a given size.
+
+        Args:
+            size: The size of the square.
+        """
         self.__size = size
-
-
-my_square = Square(3)
-print(type(my_square))
-print(my_square.__dict__)
