@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-'''
-Module for Class Rectangle
-'''
+'''Module for Rectangle class'''
 
 
 class Rectangle:
+    '''Class that defines a rectangle'''
     def __init__(self, width=0, height=0):
-        '''Initialization method for Rectangle'''
+        '''Initialization of instance attributes'''
         self.width = width
         self.height = height
 
@@ -39,17 +38,21 @@ class Rectangle:
         self.__height = value
 
     def area(self):
-        '''Method to calculate area of the rectangle'''
-        return self.__width * self.__height
+        '''Return the area of the rectangle'''
+        return self.width * self.height
 
     def perimeter(self):
-        '''Method to calculate perimeter of the rectangle'''
-        if self.__width == 0 or self.__height == 0:
+        '''Return the perimeter of the rectangle'''
+        if self.width == 0 or self.height == 0:
             return 0
-        return 2 * (self.__width + self.__height)
+        return 2 * (self.width + self.height)
 
     def __str__(self):
-        '''Method to return string representation of the rectangle'''
-        if self.__width == 0 or self.__height == 0:
+        '''Returns a string representation of the rectangle'''
+        if self.width == 0 or self.height == 0:
             return ""
-        return "\n".join(["#" * self.__width for _ in range(self.__height)])
+        return "\n".join("#" * self.width for _ in range(self.height))
+
+    def print(self):
+        '''Prints the rectangle'''
+        print(str(self))
