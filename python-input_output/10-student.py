@@ -12,7 +12,8 @@ class Student:
         self.age = age
 
     def to_json(self, attrs=None):
-        """Get dictionary representation of Student with attribute filtering."""
+        """Get dictionary representation of
+        Student with attribute filtering."""
         if attrs is None:
             return self.__dict__
         return {k: v for k, v in self.__dict__.items() if k in attrs}
