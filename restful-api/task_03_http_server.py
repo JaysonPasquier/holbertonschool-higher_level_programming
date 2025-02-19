@@ -33,6 +33,12 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
             }
             self._send_json_response(data)
 
+        elif self.path == '/status':
+            status_data = {
+                "status": "OK"
+            }
+            self._send_json_response(status_data)
+
         elif self.path == '/info':
             info_data = {
                 "version": "1.0",
