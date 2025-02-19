@@ -7,10 +7,10 @@ import json
 class SimpleAPIHandler(BaseHTTPRequestHandler):
     """Custom handler for HTTP requests"""
 
-    def _set_headers(self, status_code=200, content_type='application/json'):
+    def _set_headers(self, status_code=200):
         """Set response headers"""
         self.send_response(status_code)
-        self.send_header('Content-type', content_type)
+        self.send_header('Content-type', 'application/json')
         self.end_headers()
 
     def _send_json_response(self, data, status_code=200):
@@ -22,8 +22,10 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         """Handle GET requests"""
         if self.path == '/':
-            self._set_headers(200, 'text/plain')
-            self.wfile.write("Hello, this is a simple API!".encode())
+            welcome_data = {
+                "message": "Hello, this is a simple API!"
+            }
+            self._send_json_response(welcome_data)
 
         elif self.path == '/data':
             data = {
@@ -34,8 +36,10 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
             self._send_json_response(data)
 
         elif self.path == '/status':
-            self._set_headers(200, 'text/plain')
-            self.wfile.write("OK".encode())
+            status_data = {
+                "status": "OK"
+            }
+            self._send_json_response(status_data)
 
         else:
             error_data = {
