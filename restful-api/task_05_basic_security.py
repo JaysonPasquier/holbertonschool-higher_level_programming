@@ -27,6 +27,7 @@ users = {
     }
 }
 
+
 @auth.verify_password
 def verify_password(username, password):
     """Verify basic auth credentials"""
@@ -35,11 +36,13 @@ def verify_password(username, password):
         return username
     return None
 
+
 @app.route('/basic-protected')
 @auth.login_required
 def basic_protected():
     """Basic auth protected endpoint"""
     return jsonify({"message": "Basic Auth: Access Granted"})
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -59,11 +62,13 @@ def login():
         identity={"username": username, "role": users[username]["role"]})
     return jsonify({"access_token": access_token})
 
+
 @app.route('/jwt-protected')
 @jwt_required()
 def jwt_protected():
     """JWT protected endpoint"""
     return jsonify({"message": "JWT Auth: Access Granted"})
+
 
 @app.route('/admin-only')
 @jwt_required()
@@ -74,26 +79,31 @@ def admin_only():
         return jsonify({"error": "Admin access required"}), 403
     return jsonify({"message": "Admin Access: Granted"})
 
+
 # Error handlers
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
     """Handle missing JWT token"""
     return jsonify({"error": "Missing or invalid token"}), 401
 
+
 @jwt.invalid_token_loader
 def handle_invalid_token_error(err):
     """Handle invalid JWT token"""
     return jsonify({"error": "Invalid token"}), 401
+
 
 @jwt.expired_token_loader
 def handle_expired_token_error(header, payload):
     """Handle expired JWT token"""
     return jsonify({"error": "Token has expired"}), 401
 
+
 @auth.error_handler
 def auth_error(status):
     """Handle basic auth errors"""
     return jsonify({"error": "Unauthorized"}), 401
+
 
 if __name__ == '__main__':
     app.run(debug=True)

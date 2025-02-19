@@ -7,20 +7,24 @@ app = Flask(__name__)
 # In-memory storage for users
 users = {}
 
+
 @app.route('/')
 def home():
     """Root endpoint"""
     return "Welcome to the Flask API!"
+
 
 @app.route('/data')
 def get_data():
     """Return list of usernames"""
     return jsonify(list(users.keys()))
 
+
 @app.route('/status')
 def get_status():
     """Return API status"""
     return "OK"
+
 
 @app.route('/users/<username>')
 def get_user(username):
@@ -28,6 +32,7 @@ def get_user(username):
     if username in users:
         return jsonify(users[username])
     return jsonify({"error": "User not found"}), 404
+
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
@@ -49,6 +54,7 @@ def add_user():
         "message": "User added",
         "user": users[username]
     }), 201
+
 
 if __name__ == '__main__':
     app.run(debug=True)
