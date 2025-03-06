@@ -18,7 +18,7 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     # Execute query with LIKE clause to filter states starting with N
-    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
+    cursor.execute("SELECT * FROM states WHERE BINARY name LIKE 'N%' ORDER BY id ASC")
 
     # Fetch all rows
     rows = cursor.fetchall()
