@@ -4,7 +4,15 @@
 import MySQLdb
 import sys
 
+
 if __name__ == "__main__":
+    """
+    List all states with name starting with N from database.
+    Takes 3 arguments:
+        mysql username (str)
+        mysql password (str)
+        database name (str)
+    """
     # Connect to MySQL server
     db = MySQLdb.connect(
         host="localhost",
