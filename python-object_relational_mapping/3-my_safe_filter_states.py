@@ -18,8 +18,10 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     # Execute query with safe parameter binding
-    cursor.execute("SELECT * FROM states WHERE name = %s ORDER BY id ASC",
-                  (sys.argv[4],))
+    query = """SELECT * FROM states
+               WHERE name = %s
+               ORDER BY id ASC"""
+    cursor.execute(query, (sys.argv[4],))
 
     # Fetch all rows
     rows = cursor.fetchall()

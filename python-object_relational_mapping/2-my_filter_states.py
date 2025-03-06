@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Script that displays all values in states table where name matches argument"""
+"""Script that displays values in states table matching argument"""
 
 import MySQLdb
 import sys
@@ -18,8 +18,10 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     # Execute query with user input
-    cursor.execute("SELECT * FROM states WHERE BINARY name = '{}' ORDER BY id ASC"
-                  .format(sys.argv[4]))
+    query = """SELECT * FROM states
+               WHERE BINARY name = '{}'
+               ORDER BY id ASC""".format(sys.argv[4])
+    cursor.execute(query)
 
     # Fetch all rows
     rows = cursor.fetchall()
